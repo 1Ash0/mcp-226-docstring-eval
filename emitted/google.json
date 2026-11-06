@@ -1,0 +1,518 @@
+[
+  {
+    "name": "lookup_book",
+    "description": "Look up a book in the library catalog.\n\nArgs:\n    code: ISBN-13 of the book, thirteen digits such as 9780306406157.\n\nReturns:\n    The catalog record.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code"
+      ]
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    }
+  },
+  {
+    "name": "lookup_product",
+    "description": "Look up an item in the store inventory.\n\nArgs:\n    code: Store SKU in the form AB-1234.\n\nReturns:\n    The inventory record.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code"
+      ]
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    }
+  },
+  {
+    "name": "lookup_paper",
+    "description": "Look up a published research paper.\n\nArgs:\n    code: DOI of the paper, starting with '10.', such as 10.1038/nphys1170.\n\nReturns:\n    The paper's metadata.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code"
+      ]
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    }
+  },
+  {
+    "name": "cpu_stats",
+    "description": "Report processor load for a server.\n\nArgs:\n    host: Hostname of the server.\n    window_minutes: Averaging window in minutes: 1, 5 or 15.\n\nReturns:\n    Load average over the window.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "host": {
+          "type": "string"
+        },
+        "window_minutes": {
+          "default": 5,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "host"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "memory_stats",
+    "description": "Report RAM consumption for a server.\n\nArgs:\n    host: Hostname of the server.\n    include_swap: Also report swap / page-file usage.\n\nReturns:\n    Used and free memory in MiB.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "host": {
+          "type": "string"
+        },
+        "include_swap": {
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "host"
+      ]
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    }
+  },
+  {
+    "name": "disk_stats",
+    "description": "Report storage use for a server.\n\nArgs:\n    host: Hostname of the server.\n    mount: Mount point or drive to inspect, such as /var or C:.\n\nReturns:\n    Used and free bytes on the mount.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "host": {
+          "type": "string"
+        },
+        "mount": {
+          "default": "/",
+          "type": "string"
+        }
+      },
+      "required": [
+        "host"
+      ]
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    }
+  },
+  {
+    "name": "send_email",
+    "description": "Deliver a written message to a person.\n\nArgs:\n    recipient: Email address such as name@example.com.\n    text: Message body.\n\nReturns:\n    Delivery id.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "recipient": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "recipient",
+        "text"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "send_sms",
+    "description": "Deliver a short text message to a person's phone.\n\nArgs:\n    recipient: Phone number in E.164 form such as +14155550123.\n    text: Message body, at most 160 characters.\n\nReturns:\n    Delivery id.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "recipient": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "recipient",
+        "text"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "post_message",
+    "description": "Post a message to a team chat space.\n\nArgs:\n    recipient: Channel name beginning with '#', such as #ops.\n    text: Message body.\n\nReturns:\n    Message permalink.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "recipient": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "recipient",
+        "text"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "upload_file",
+    "description": "Copy a local file to cloud object storage.\n\nArgs:\n    path: Local path of the file.\n    bucket: Name of the S3 bucket to copy into.\n\nReturns:\n    Object URL.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "bucket": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "bucket"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "attach_file",
+    "description": "Attach a file to a support ticket.\n\nArgs:\n    path: Local path of the file.\n    ticket_id: Ticket key such as SUP-1042.\n\nReturns:\n    Attachment id.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "ticket_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "ticket_id"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "share_file",
+    "description": "Create a shareable download link for a file.\n\nArgs:\n    path: Local path of the file.\n    expires_hours: Hours until the link stops working.\n\nReturns:\n    The link.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "expires_hours": {
+          "default": 24,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "path"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "create_event",
+    "description": "Add an entry to the shared calendar.\n\nArgs:\n    title: Event title shown to attendees.\n    start: ISO-8601 start time.\n    attendees: Email addresses to invite.\n\nReturns:\n    Event id.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "start": {
+          "type": "string"
+        },
+        "attendees": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "title",
+        "start"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "set_reminder",
+    "description": "Schedule a personal notification.\n\nArgs:\n    text: What to remind about.\n    at: ISO-8601 time at which the notification fires.\n\nReturns:\n    Reminder id.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "at": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "at"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "block_focus_time",
+    "description": "Reserve uninterrupted time on your own schedule.\n\nArgs:\n    start: ISO-8601 start time.\n    duration_minutes: Length of the block in minutes.\n    mute_notifications: Silence all notifications during the block.\n\nReturns:\n    Block id.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "string"
+        },
+        "duration_minutes": {
+          "type": "integer"
+        },
+        "mute_notifications": {
+          "default": true,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "start",
+        "duration_minutes"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "convert_currency",
+    "description": "Convert an amount between currencies.\n\nArgs:\n    amount: Amount to convert.\n    source: ISO 4217 code of the source, such as EUR.\n    target: ISO 4217 code of the target, such as JPY.\n\nReturns:\n    Converted amount.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number"
+        },
+        "source": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "amount",
+        "source",
+        "target"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "convert_units",
+    "description": "Convert a measurement between units.\n\nArgs:\n    amount: Value to convert.\n    source: Unit symbol of the source, such as km, lb or degF.\n    target: Unit symbol of the target.\n\nReturns:\n    Converted value.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number"
+        },
+        "source": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "amount",
+        "source",
+        "target"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "convert_timezone",
+    "description": "Convert a clock time between time zones.\n\nArgs:\n    amount: Clock time to convert, such as 14:30.\n    source: IANA zone name of the source, such as Europe/Paris.\n    target: IANA zone name of the target.\n\nReturns:\n    Converted clock time.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "amount",
+        "source",
+        "target"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  }
+]

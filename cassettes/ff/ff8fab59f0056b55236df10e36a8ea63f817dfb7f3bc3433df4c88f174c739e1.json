@@ -1,0 +1,63 @@
+{
+  "key": "ff8fab59f0056b55236df10e36a8ea63f817dfb7f3bc3433df4c88f174c739e1",
+  "recorded_at": "2026-11-06T09:07:35.609725+00:00",
+  "request": "groq|openai/gpt-oss-20b|{\"messages\":[{\"content\":\"How busy is the processor on db-2 right now?\",\"role\":\"user\"}],\"model\":\"openai/gpt-oss-20b\",\"seed\":0,\"temperature\":0.0,\"tool_choice\":\"required\",\"tools\":[{\"function\":{\"description\":\"Reserve uninterrupted time on your own schedule.\",\"name\":\"block_focus_time\",\"parameters\":{\"properties\":{\"duration_minutes\":{\"type\":\"integer\"},\"mute_notifications\":{\"default\":true,\"type\":\"boolean\"},\"start\":{\"type\":\"string\"}},\"required\":[\"start\",\"duration_minutes\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Add an entry to the shared calendar.\",\"name\":\"create_event\",\"parameters\":{\"properties\":{\"attendees\":{\"default\":[],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"start\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"}},\"required\":[\"title\",\"start\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Deliver a short text message to a person's phone.\",\"name\":\"send_sms\",\"parameters\":{\"properties\":{\"recipient\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"required\":[\"recipient\",\"text\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Convert a clock time between time zones.\",\"name\":\"convert_timezone\",\"parameters\":{\"properties\":{\"amount\":{\"type\":\"string\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"}},\"required\":[\"amount\",\"source\",\"target\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Deliver a written message to a person.\",\"name\":\"send_email\",\"parameters\":{\"properties\":{\"recipient\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"required\":[\"recipient\",\"text\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Look up a book in the library catalog.\",\"name\":\"lookup_book\",\"parameters\":{\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Post a message to a team chat space.\",\"name\":\"post_message\",\"parameters\":{\"properties\":{\"recipient\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"required\":[\"recipient\",\"text\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Report processor load for a server.\",\"name\":\"cpu_stats\",\"parameters\":{\"properties\":{\"host\":{\"type\":\"string\"},\"window_minutes\":{\"default\":5,\"type\":\"integer\"}},\"required\":[\"host\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Copy a local file to cloud object storage.\",\"name\":\"upload_file\",\"parameters\":{\"properties\":{\"bucket\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"bucket\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Report RAM consumption for a server.\",\"name\":\"memory_stats\",\"parameters\":{\"properties\":{\"host\":{\"type\":\"string\"},\"include_swap\":{\"default\":false,\"type\":\"boolean\"}},\"required\":[\"host\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Attach a file to a support ticket.\",\"name\":\"attach_file\",\"parameters\":{\"properties\":{\"path\":{\"type\":\"string\"},\"ticket_id\":{\"type\":\"string\"}},\"required\":[\"path\",\"ticket_id\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Create a shareable download link for a file.\",\"name\":\"share_file\",\"parameters\":{\"properties\":{\"expires_hours\":{\"default\":24,\"type\":\"integer\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Convert an amount between currencies.\",\"name\":\"convert_currency\",\"parameters\":{\"properties\":{\"amount\":{\"type\":\"number\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"}},\"required\":[\"amount\",\"source\",\"target\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Schedule a personal notification.\",\"name\":\"set_reminder\",\"parameters\":{\"properties\":{\"at\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"required\":[\"text\",\"at\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Report storage use for a server.\",\"name\":\"disk_stats\",\"parameters\":{\"properties\":{\"host\":{\"type\":\"string\"},\"mount\":{\"default\":\"/\",\"type\":\"string\"}},\"required\":[\"host\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Convert a measurement between units.\",\"name\":\"convert_units\",\"parameters\":{\"properties\":{\"amount\":{\"type\":\"number\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"}},\"required\":[\"amount\",\"source\",\"target\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Look up a published research paper.\",\"name\":\"lookup_paper\",\"parameters\":{\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Look up an item in the store inventory.\",\"name\":\"lookup_product\",\"parameters\":{\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"],\"type\":\"object\"}},\"type\":\"function\"}]}",
+  "response": {
+    "id": "chatcmpl-a5d8b9c4-6301-4673-89ec-614d5946aaac",
+    "choices": [
+      {
+        "finish_reason": "tool_calls",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": null,
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "fc_452dcee4-0e9e-4e5d-be81-0deb6ecdb5d9",
+              "function": {
+                "arguments": "{\"host\":\"db-2\"}",
+                "name": "cpu_stats"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning": "We need to call cpu_stats for host db-2."
+        }
+      }
+    ],
+    "created": 1793956055,
+    "model": "openai/gpt-oss-20b",
+    "object": "chat.completion",
+    "metadata": null,
+    "moderation": null,
+    "service_tier": "on_demand",
+    "system_fingerprint": "fp_34cb00738d",
+    "usage": {
+      "completion_tokens": 38,
+      "prompt_tokens": 642,
+      "total_tokens": 680,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 13,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": null,
+      "queue_time": 0.315375865,
+      "prompt_time": 0.037570145,
+      "completion_time": 0.061706823,
+      "total_time": 0.099276968
+    },
+    "usage_breakdown": null,
+    "x_groq": {
+      "id": "req_01m6r1t2aqenzv26hxg9vk89x8",
+      "seed": 0
+    }
+  }
+}

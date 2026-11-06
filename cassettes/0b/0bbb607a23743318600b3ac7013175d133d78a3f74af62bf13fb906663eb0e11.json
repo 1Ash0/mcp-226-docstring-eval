@@ -1,0 +1,63 @@
+{
+  "key": "0bbb607a23743318600b3ac7013175d133d78a3f74af62bf13fb906663eb0e11",
+  "recorded_at": "2026-11-06T09:06:41.433464+00:00",
+  "request": "groq|openai/gpt-oss-20b|{\"messages\":[{\"content\":\"Pull up the record for 10.1126/science.169.3946.635.\",\"role\":\"user\"}],\"model\":\"openai/gpt-oss-20b\",\"seed\":0,\"temperature\":0.0,\"tool_choice\":\"required\",\"tools\":[{\"function\":{\"description\":\"Attach a file to a support ticket.\",\"name\":\"attach_file\",\"parameters\":{\"properties\":{\"path\":{\"type\":\"string\"},\"ticket_id\":{\"type\":\"string\"}},\"required\":[\"path\",\"ticket_id\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Report storage use for a server.\",\"name\":\"disk_stats\",\"parameters\":{\"properties\":{\"host\":{\"type\":\"string\"},\"mount\":{\"default\":\"/\",\"type\":\"string\"}},\"required\":[\"host\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Convert a measurement between units.\",\"name\":\"convert_units\",\"parameters\":{\"properties\":{\"amount\":{\"type\":\"number\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"}},\"required\":[\"amount\",\"source\",\"target\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Convert a clock time between time zones.\",\"name\":\"convert_timezone\",\"parameters\":{\"properties\":{\"amount\":{\"type\":\"string\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"}},\"required\":[\"amount\",\"source\",\"target\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Copy a local file to cloud object storage.\",\"name\":\"upload_file\",\"parameters\":{\"properties\":{\"bucket\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"bucket\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Look up a book in the library catalog.\",\"name\":\"lookup_book\",\"parameters\":{\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Convert an amount between currencies.\",\"name\":\"convert_currency\",\"parameters\":{\"properties\":{\"amount\":{\"type\":\"number\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"}},\"required\":[\"amount\",\"source\",\"target\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Reserve uninterrupted time on your own schedule.\",\"name\":\"block_focus_time\",\"parameters\":{\"properties\":{\"duration_minutes\":{\"type\":\"integer\"},\"mute_notifications\":{\"default\":true,\"type\":\"boolean\"},\"start\":{\"type\":\"string\"}},\"required\":[\"start\",\"duration_minutes\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Report processor load for a server.\",\"name\":\"cpu_stats\",\"parameters\":{\"properties\":{\"host\":{\"type\":\"string\"},\"window_minutes\":{\"default\":5,\"type\":\"integer\"}},\"required\":[\"host\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Deliver a written message to a person.\",\"name\":\"send_email\",\"parameters\":{\"properties\":{\"recipient\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"required\":[\"recipient\",\"text\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Create a shareable download link for a file.\",\"name\":\"share_file\",\"parameters\":{\"properties\":{\"expires_hours\":{\"default\":24,\"type\":\"integer\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Schedule a personal notification.\",\"name\":\"set_reminder\",\"parameters\":{\"properties\":{\"at\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"required\":[\"text\",\"at\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Add an entry to the shared calendar.\",\"name\":\"create_event\",\"parameters\":{\"properties\":{\"attendees\":{\"default\":[],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"start\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"}},\"required\":[\"title\",\"start\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Deliver a short text message to a person's phone.\",\"name\":\"send_sms\",\"parameters\":{\"properties\":{\"recipient\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"required\":[\"recipient\",\"text\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Look up an item in the store inventory.\",\"name\":\"lookup_product\",\"parameters\":{\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Post a message to a team chat space.\",\"name\":\"post_message\",\"parameters\":{\"properties\":{\"recipient\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"required\":[\"recipient\",\"text\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Look up a published research paper.\",\"name\":\"lookup_paper\",\"parameters\":{\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Report RAM consumption for a server.\",\"name\":\"memory_stats\",\"parameters\":{\"properties\":{\"host\":{\"type\":\"string\"},\"include_swap\":{\"default\":false,\"type\":\"boolean\"}},\"required\":[\"host\"],\"type\":\"object\"}},\"type\":\"function\"}]}",
+  "response": {
+    "id": "chatcmpl-2ba7395a-5d24-454c-9c49-14325c9e3fe0",
+    "choices": [
+      {
+        "finish_reason": "tool_calls",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": null,
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "fc_185a4d86-be40-43d5-a097-2f26cf34a8b6",
+              "function": {
+                "arguments": "{\"code\":\"10.1126/science.169.3946.635\"}",
+                "name": "lookup_paper"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning": "The user wants to pull up the record for a DOI: 10.1126/science.169.3946.635. We have a function lookup_paper. We'll call it."
+        }
+      }
+    ],
+    "created": 1793956001,
+    "model": "openai/gpt-oss-20b",
+    "object": "chat.completion",
+    "metadata": null,
+    "moderation": null,
+    "service_tier": "on_demand",
+    "system_fingerprint": "fp_ce54c53bd5",
+    "usage": {
+      "completion_tokens": 76,
+      "prompt_tokens": 650,
+      "total_tokens": 726,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 40,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": null,
+      "queue_time": 0.367554818,
+      "prompt_time": 0.043517612,
+      "completion_time": 0.084477503,
+      "total_time": 0.127995115
+    },
+    "usage_breakdown": null,
+    "x_groq": {
+      "id": "req_01m6r1rdbbeftvnj7rc157g7qx",
+      "seed": 0
+    }
+  }
+}

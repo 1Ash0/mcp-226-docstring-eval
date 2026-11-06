@@ -1,0 +1,63 @@
+{
+  "key": "5b33f7d28b5b0dfa0d57f6f02e2bad293ed12739d0c49e3f97892700cba36901",
+  "recorded_at": "2026-11-06T09:04:58.967892+00:00",
+  "request": "groq|openai/gpt-oss-20b|{\"messages\":[{\"content\":\"What is 250 CHF in SEK?\",\"role\":\"user\"}],\"model\":\"openai/gpt-oss-20b\",\"seed\":0,\"temperature\":0.0,\"tool_choice\":\"required\",\"tools\":[{\"function\":{\"description\":\"Attach a file to a support ticket.\",\"name\":\"attach_file\",\"parameters\":{\"properties\":{\"path\":{\"description\":\"Local path of the file.\",\"type\":\"string\"},\"ticket_id\":{\"description\":\"Ticket key such as SUP-1042.\",\"type\":\"string\"}},\"required\":[\"path\",\"ticket_id\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Report storage use for a server.\",\"name\":\"disk_stats\",\"parameters\":{\"properties\":{\"host\":{\"description\":\"Hostname of the server.\",\"type\":\"string\"},\"mount\":{\"default\":\"/\",\"description\":\"Mount point or drive to inspect, such as /var or C:.\",\"type\":\"string\"}},\"required\":[\"host\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Convert a measurement between units.\",\"name\":\"convert_units\",\"parameters\":{\"properties\":{\"amount\":{\"description\":\"Value to convert.\",\"type\":\"number\"},\"source\":{\"description\":\"Unit symbol of the source, such as km, lb or degF.\",\"type\":\"string\"},\"target\":{\"description\":\"Unit symbol of the target.\",\"type\":\"string\"}},\"required\":[\"amount\",\"source\",\"target\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Convert a clock time between time zones.\",\"name\":\"convert_timezone\",\"parameters\":{\"properties\":{\"amount\":{\"description\":\"Clock time to convert, such as 14:30.\",\"type\":\"string\"},\"source\":{\"description\":\"IANA zone name of the source, such as Europe/Paris.\",\"type\":\"string\"},\"target\":{\"description\":\"IANA zone name of the target.\",\"type\":\"string\"}},\"required\":[\"amount\",\"source\",\"target\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Copy a local file to cloud object storage.\",\"name\":\"upload_file\",\"parameters\":{\"properties\":{\"bucket\":{\"description\":\"Name of the S3 bucket to copy into.\",\"type\":\"string\"},\"path\":{\"description\":\"Local path of the file.\",\"type\":\"string\"}},\"required\":[\"path\",\"bucket\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Look up a book in the library catalog.\",\"name\":\"lookup_book\",\"parameters\":{\"properties\":{\"code\":{\"description\":\"ISBN-13 of the book, thirteen digits such as 9780306406157.\",\"type\":\"string\"}},\"required\":[\"code\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Convert an amount between currencies.\",\"name\":\"convert_currency\",\"parameters\":{\"properties\":{\"amount\":{\"description\":\"Amount to convert.\",\"type\":\"number\"},\"source\":{\"description\":\"ISO 4217 code of the source, such as EUR.\",\"type\":\"string\"},\"target\":{\"description\":\"ISO 4217 code of the target, such as JPY.\",\"type\":\"string\"}},\"required\":[\"amount\",\"source\",\"target\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Reserve uninterrupted time on your own schedule.\",\"name\":\"block_focus_time\",\"parameters\":{\"properties\":{\"duration_minutes\":{\"description\":\"Length of the block in minutes.\",\"type\":\"integer\"},\"mute_notifications\":{\"default\":true,\"description\":\"Silence all notifications during the block.\",\"type\":\"boolean\"},\"start\":{\"description\":\"ISO-8601 start time.\",\"type\":\"string\"}},\"required\":[\"start\",\"duration_minutes\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Report processor load for a server.\",\"name\":\"cpu_stats\",\"parameters\":{\"properties\":{\"host\":{\"description\":\"Hostname of the server.\",\"type\":\"string\"},\"window_minutes\":{\"default\":5,\"description\":\"Averaging window in minutes: 1, 5 or 15.\",\"type\":\"integer\"}},\"required\":[\"host\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Deliver a written message to a person.\",\"name\":\"send_email\",\"parameters\":{\"properties\":{\"recipient\":{\"description\":\"Email address such as name@example.com.\",\"type\":\"string\"},\"text\":{\"description\":\"Message body.\",\"type\":\"string\"}},\"required\":[\"recipient\",\"text\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Create a shareable download link for a file.\",\"name\":\"share_file\",\"parameters\":{\"properties\":{\"expires_hours\":{\"default\":24,\"description\":\"Hours until the link stops working.\",\"type\":\"integer\"},\"path\":{\"description\":\"Local path of the file.\",\"type\":\"string\"}},\"required\":[\"path\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Schedule a personal notification.\",\"name\":\"set_reminder\",\"parameters\":{\"properties\":{\"at\":{\"description\":\"ISO-8601 time at which the notification fires.\",\"type\":\"string\"},\"text\":{\"description\":\"What to remind about.\",\"type\":\"string\"}},\"required\":[\"text\",\"at\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Add an entry to the shared calendar.\",\"name\":\"create_event\",\"parameters\":{\"properties\":{\"attendees\":{\"default\":[],\"description\":\"Email addresses to invite.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"start\":{\"description\":\"ISO-8601 start time.\",\"type\":\"string\"},\"title\":{\"description\":\"Event title shown to attendees.\",\"type\":\"string\"}},\"required\":[\"title\",\"start\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Deliver a short text message to a person's phone.\",\"name\":\"send_sms\",\"parameters\":{\"properties\":{\"recipient\":{\"description\":\"Phone number in E.164 form such as +14155550123.\",\"type\":\"string\"},\"text\":{\"description\":\"Message body, at most 160 characters.\",\"type\":\"string\"}},\"required\":[\"recipient\",\"text\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Look up an item in the store inventory.\",\"name\":\"lookup_product\",\"parameters\":{\"properties\":{\"code\":{\"description\":\"Store SKU in the form AB-1234.\",\"type\":\"string\"}},\"required\":[\"code\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Post a message to a team chat space.\",\"name\":\"post_message\",\"parameters\":{\"properties\":{\"recipient\":{\"description\":\"Channel name beginning with '#', such as #ops.\",\"type\":\"string\"},\"text\":{\"description\":\"Message body.\",\"type\":\"string\"}},\"required\":[\"recipient\",\"text\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Look up a published research paper.\",\"name\":\"lookup_paper\",\"parameters\":{\"properties\":{\"code\":{\"description\":\"DOI of the paper, starting with '10.', such as 10.1038/nphys1170.\",\"type\":\"string\"}},\"required\":[\"code\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Report RAM consumption for a server.\",\"name\":\"memory_stats\",\"parameters\":{\"properties\":{\"host\":{\"description\":\"Hostname of the server.\",\"type\":\"string\"},\"include_swap\":{\"default\":false,\"description\":\"Also report swap / page-file usage.\",\"type\":\"boolean\"}},\"required\":[\"host\"],\"type\":\"object\"}},\"type\":\"function\"}]}",
+  "response": {
+    "id": "chatcmpl-e71a293f-511e-4858-b17d-6f0420ae676d",
+    "choices": [
+      {
+        "finish_reason": "tool_calls",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": null,
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "fc_2c592a30-963f-4785-b70d-2f53fc2c0fe7",
+              "function": {
+                "arguments": "{\"amount\":250,\"source\":\"CHF\",\"target\":\"SEK\"}",
+                "name": "convert_currency"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning": "We need to convert currency. Use convert_currency function. Provide amount 250, source CHF, target SEK."
+        }
+      }
+    ],
+    "created": 1793955899,
+    "model": "openai/gpt-oss-20b",
+    "object": "chat.completion",
+    "metadata": null,
+    "moderation": null,
+    "service_tier": "on_demand",
+    "system_fingerprint": "fp_a4315eb300",
+    "usage": {
+      "completion_tokens": 55,
+      "prompt_tokens": 985,
+      "total_tokens": 1040,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 23,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": null,
+      "queue_time": 0.317478946,
+      "prompt_time": 0.057406564,
+      "completion_time": 0.061355894,
+      "total_time": 0.118762458
+    },
+    "usage_breakdown": null,
+    "x_groq": {
+      "id": "req_01m6r1n9b3eqbtmm5htygx2rvx",
+      "seed": 0
+    }
+  }
+}

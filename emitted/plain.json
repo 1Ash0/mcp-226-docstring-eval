@@ -1,0 +1,518 @@
+[
+  {
+    "name": "lookup_book",
+    "description": "Look up a book in the library catalog.\n\nThe code argument gives: ISBN-13 of the book, thirteen digits such as 9780306406157. It returns: The catalog record.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code"
+      ]
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    }
+  },
+  {
+    "name": "lookup_product",
+    "description": "Look up an item in the store inventory.\n\nThe code argument gives: Store SKU in the form AB-1234. It returns: The inventory record.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code"
+      ]
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    }
+  },
+  {
+    "name": "lookup_paper",
+    "description": "Look up a published research paper.\n\nThe code argument gives: DOI of the paper, starting with '10.', such as 10.1038/nphys1170. It returns: The paper's metadata.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code"
+      ]
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    }
+  },
+  {
+    "name": "cpu_stats",
+    "description": "Report processor load for a server.\n\nThe host argument gives: Hostname of the server. The window_minutes argument (optional, default 5) gives: Averaging window in minutes: 1, 5 or 15. It returns: Load average over the window.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "host": {
+          "type": "string"
+        },
+        "window_minutes": {
+          "default": 5,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "host"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "memory_stats",
+    "description": "Report RAM consumption for a server.\n\nThe host argument gives: Hostname of the server. The include_swap argument (optional, default False) gives: Also report swap / page-file usage. It returns: Used and free memory in MiB.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "host": {
+          "type": "string"
+        },
+        "include_swap": {
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "host"
+      ]
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    }
+  },
+  {
+    "name": "disk_stats",
+    "description": "Report storage use for a server.\n\nThe host argument gives: Hostname of the server. The mount argument (optional, default '/') gives: Mount point or drive to inspect, such as /var or C:. It returns: Used and free bytes on the mount.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "host": {
+          "type": "string"
+        },
+        "mount": {
+          "default": "/",
+          "type": "string"
+        }
+      },
+      "required": [
+        "host"
+      ]
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "type": "object"
+    }
+  },
+  {
+    "name": "send_email",
+    "description": "Deliver a written message to a person.\n\nThe recipient argument gives: Email address such as name@example.com. The text argument gives: Message body. It returns: Delivery id.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "recipient": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "recipient",
+        "text"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "send_sms",
+    "description": "Deliver a short text message to a person's phone.\n\nThe recipient argument gives: Phone number in E.164 form such as +14155550123. The text argument gives: Message body, at most 160 characters. It returns: Delivery id.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "recipient": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "recipient",
+        "text"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "post_message",
+    "description": "Post a message to a team chat space.\n\nThe recipient argument gives: Channel name beginning with '#', such as #ops. The text argument gives: Message body. It returns: Message permalink.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "recipient": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "recipient",
+        "text"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "upload_file",
+    "description": "Copy a local file to cloud object storage.\n\nThe path argument gives: Local path of the file. The bucket argument gives: Name of the S3 bucket to copy into. It returns: Object URL.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "bucket": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "bucket"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "attach_file",
+    "description": "Attach a file to a support ticket.\n\nThe path argument gives: Local path of the file. The ticket_id argument gives: Ticket key such as SUP-1042. It returns: Attachment id.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "ticket_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "ticket_id"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "share_file",
+    "description": "Create a shareable download link for a file.\n\nThe path argument gives: Local path of the file. The expires_hours argument (optional, default 24) gives: Hours until the link stops working. It returns: The link.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "expires_hours": {
+          "default": 24,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "path"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "create_event",
+    "description": "Add an entry to the shared calendar.\n\nThe title argument gives: Event title shown to attendees. The start argument gives: ISO-8601 start time. The attendees argument (optional, default []) gives: Email addresses to invite. It returns: Event id.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "start": {
+          "type": "string"
+        },
+        "attendees": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "title",
+        "start"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "set_reminder",
+    "description": "Schedule a personal notification.\n\nThe text argument gives: What to remind about. The at argument gives: ISO-8601 time at which the notification fires. It returns: Reminder id.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "at": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "at"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "block_focus_time",
+    "description": "Reserve uninterrupted time on your own schedule.\n\nThe start argument gives: ISO-8601 start time. The duration_minutes argument gives: Length of the block in minutes. The mute_notifications argument (optional, default True) gives: Silence all notifications during the block. It returns: Block id.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "string"
+        },
+        "duration_minutes": {
+          "type": "integer"
+        },
+        "mute_notifications": {
+          "default": true,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "start",
+        "duration_minutes"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "convert_currency",
+    "description": "Convert an amount between currencies.\n\nThe amount argument gives: Amount to convert. The source argument gives: ISO 4217 code of the source, such as EUR. The target argument gives: ISO 4217 code of the target, such as JPY. It returns: Converted amount.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number"
+        },
+        "source": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "amount",
+        "source",
+        "target"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "convert_units",
+    "description": "Convert a measurement between units.\n\nThe amount argument gives: Value to convert. The source argument gives: Unit symbol of the source, such as km, lb or degF. The target argument gives: Unit symbol of the target. It returns: Converted value.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number"
+        },
+        "source": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "amount",
+        "source",
+        "target"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "name": "convert_timezone",
+    "description": "Convert a clock time between time zones.\n\nThe amount argument gives: Clock time to convert, such as 14:30. The source argument gives: IANA zone name of the source, such as Europe/Paris. The target argument gives: IANA zone name of the target. It returns: Converted clock time.\n",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "amount",
+        "source",
+        "target"
+      ]
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "type": "object"
+    }
+  }
+]

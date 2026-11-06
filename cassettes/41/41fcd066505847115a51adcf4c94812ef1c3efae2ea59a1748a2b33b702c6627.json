@@ -1,0 +1,63 @@
+{
+  "key": "41fcd066505847115a51adcf4c94812ef1c3efae2ea59a1748a2b33b702c6627",
+  "recorded_at": "2026-11-06T08:50:36.307702+00:00",
+  "request": "groq|openai/gpt-oss-20b|{\"messages\":[{\"content\":\"Is web-1 leaning on its page file?\",\"role\":\"user\"}],\"model\":\"openai/gpt-oss-20b\",\"seed\":0,\"temperature\":0.0,\"tool_choice\":\"required\",\"tools\":[{\"function\":{\"description\":\"Attach a file to a support ticket.\\n\\nArgs:\\n    path: Local path of the file.\\n    ticket_id: Ticket key such as SUP-1042.\\n\\nReturns:\\n    Attachment id.\\n\",\"name\":\"attach_file\",\"parameters\":{\"properties\":{\"path\":{\"type\":\"string\"},\"ticket_id\":{\"type\":\"string\"}},\"required\":[\"path\",\"ticket_id\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Report storage use for a server.\\n\\nArgs:\\n    host: Hostname of the server.\\n    mount: Mount point or drive to inspect, such as /var or C:.\\n\\nReturns:\\n    Used and free bytes on the mount.\\n\",\"name\":\"disk_stats\",\"parameters\":{\"properties\":{\"host\":{\"type\":\"string\"},\"mount\":{\"default\":\"/\",\"type\":\"string\"}},\"required\":[\"host\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Convert a measurement between units.\\n\\nArgs:\\n    amount: Value to convert.\\n    source: Unit symbol of the source, such as km, lb or degF.\\n    target: Unit symbol of the target.\\n\\nReturns:\\n    Converted value.\\n\",\"name\":\"convert_units\",\"parameters\":{\"properties\":{\"amount\":{\"type\":\"number\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"}},\"required\":[\"amount\",\"source\",\"target\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Convert a clock time between time zones.\\n\\nArgs:\\n    amount: Clock time to convert, such as 14:30.\\n    source: IANA zone name of the source, such as Europe/Paris.\\n    target: IANA zone name of the target.\\n\\nReturns:\\n    Converted clock time.\\n\",\"name\":\"convert_timezone\",\"parameters\":{\"properties\":{\"amount\":{\"type\":\"string\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"}},\"required\":[\"amount\",\"source\",\"target\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Copy a local file to cloud object storage.\\n\\nArgs:\\n    path: Local path of the file.\\n    bucket: Name of the S3 bucket to copy into.\\n\\nReturns:\\n    Object URL.\\n\",\"name\":\"upload_file\",\"parameters\":{\"properties\":{\"bucket\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"bucket\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Look up a book in the library catalog.\\n\\nArgs:\\n    code: ISBN-13 of the book, thirteen digits such as 9780306406157.\\n\\nReturns:\\n    The catalog record.\\n\",\"name\":\"lookup_book\",\"parameters\":{\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Convert an amount between currencies.\\n\\nArgs:\\n    amount: Amount to convert.\\n    source: ISO 4217 code of the source, such as EUR.\\n    target: ISO 4217 code of the target, such as JPY.\\n\\nReturns:\\n    Converted amount.\\n\",\"name\":\"convert_currency\",\"parameters\":{\"properties\":{\"amount\":{\"type\":\"number\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"}},\"required\":[\"amount\",\"source\",\"target\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Reserve uninterrupted time on your own schedule.\\n\\nArgs:\\n    start: ISO-8601 start time.\\n    duration_minutes: Length of the block in minutes.\\n    mute_notifications: Silence all notifications during the block.\\n\\nReturns:\\n    Block id.\\n\",\"name\":\"block_focus_time\",\"parameters\":{\"properties\":{\"duration_minutes\":{\"type\":\"integer\"},\"mute_notifications\":{\"default\":true,\"type\":\"boolean\"},\"start\":{\"type\":\"string\"}},\"required\":[\"start\",\"duration_minutes\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Report processor load for a server.\\n\\nArgs:\\n    host: Hostname of the server.\\n    window_minutes: Averaging window in minutes: 1, 5 or 15.\\n\\nReturns:\\n    Load average over the window.\\n\",\"name\":\"cpu_stats\",\"parameters\":{\"properties\":{\"host\":{\"type\":\"string\"},\"window_minutes\":{\"default\":5,\"type\":\"integer\"}},\"required\":[\"host\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Deliver a written message to a person.\\n\\nArgs:\\n    recipient: Email address such as name@example.com.\\n    text: Message body.\\n\\nReturns:\\n    Delivery id.\\n\",\"name\":\"send_email\",\"parameters\":{\"properties\":{\"recipient\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"required\":[\"recipient\",\"text\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Create a shareable download link for a file.\\n\\nArgs:\\n    path: Local path of the file.\\n    expires_hours: Hours until the link stops working.\\n\\nReturns:\\n    The link.\\n\",\"name\":\"share_file\",\"parameters\":{\"properties\":{\"expires_hours\":{\"default\":24,\"type\":\"integer\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Schedule a personal notification.\\n\\nArgs:\\n    text: What to remind about.\\n    at: ISO-8601 time at which the notification fires.\\n\\nReturns:\\n    Reminder id.\\n\",\"name\":\"set_reminder\",\"parameters\":{\"properties\":{\"at\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"required\":[\"text\",\"at\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Add an entry to the shared calendar.\\n\\nArgs:\\n    title: Event title shown to attendees.\\n    start: ISO-8601 start time.\\n    attendees: Email addresses to invite.\\n\\nReturns:\\n    Event id.\\n\",\"name\":\"create_event\",\"parameters\":{\"properties\":{\"attendees\":{\"default\":[],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"start\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"}},\"required\":[\"title\",\"start\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Deliver a short text message to a person's phone.\\n\\nArgs:\\n    recipient: Phone number in E.164 form such as +14155550123.\\n    text: Message body, at most 160 characters.\\n\\nReturns:\\n    Delivery id.\\n\",\"name\":\"send_sms\",\"parameters\":{\"properties\":{\"recipient\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"required\":[\"recipient\",\"text\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Look up an item in the store inventory.\\n\\nArgs:\\n    code: Store SKU in the form AB-1234.\\n\\nReturns:\\n    The inventory record.\\n\",\"name\":\"lookup_product\",\"parameters\":{\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Post a message to a team chat space.\\n\\nArgs:\\n    recipient: Channel name beginning with '#', such as #ops.\\n    text: Message body.\\n\\nReturns:\\n    Message permalink.\\n\",\"name\":\"post_message\",\"parameters\":{\"properties\":{\"recipient\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"required\":[\"recipient\",\"text\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Look up a published research paper.\\n\\nArgs:\\n    code: DOI of the paper, starting with '10.', such as 10.1038/nphys1170.\\n\\nReturns:\\n    The paper's metadata.\\n\",\"name\":\"lookup_paper\",\"parameters\":{\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Report RAM consumption for a server.\\n\\nArgs:\\n    host: Hostname of the server.\\n    include_swap: Also report swap / page-file usage.\\n\\nReturns:\\n    Used and free memory in MiB.\\n\",\"name\":\"memory_stats\",\"parameters\":{\"properties\":{\"host\":{\"type\":\"string\"},\"include_swap\":{\"default\":false,\"type\":\"boolean\"}},\"required\":[\"host\"],\"type\":\"object\"}},\"type\":\"function\"}]}",
+  "response": {
+    "id": "chatcmpl-33e89e09-aae0-4b08-837d-75530e6a0611",
+    "choices": [
+      {
+        "finish_reason": "tool_calls",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": null,
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "fc_0e66e89d-9b67-4076-9f3a-743bb9a252d3",
+              "function": {
+                "arguments": "{\"host\":\"web-1\",\"include_swap\":true}",
+                "name": "memory_stats"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning": "The user asks: \"Is web-1 leaning on its page file?\" They likely refer to a server named \"web-1\" and want to know if it's using its page file heavily. We can use memory_stats to get memory usage including swap. The question: \"leaning on its page file\" means high swap usage. So we should call memory_stats with host \"web-1\" and include_swap true. Then interpret the result."
+        }
+      }
+    ],
+    "created": 1793955036,
+    "model": "openai/gpt-oss-20b",
+    "object": "chat.completion",
+    "metadata": null,
+    "moderation": null,
+    "service_tier": "on_demand",
+    "system_fingerprint": "fp_565badff47",
+    "usage": {
+      "completion_tokens": 121,
+      "prompt_tokens": 1338,
+      "total_tokens": 1459,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 91,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": null,
+      "queue_time": 0.283413175,
+      "prompt_time": 0.08089957,
+      "completion_time": 0.133097803,
+      "total_time": 0.213997373
+    },
+    "usage_breakdown": null,
+    "x_groq": {
+      "id": "req_01m6r0tytverjaan44zseetb7s",
+      "seed": 0
+    }
+  }
+}

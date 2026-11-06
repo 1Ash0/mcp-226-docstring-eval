@@ -1,0 +1,63 @@
+{
+  "key": "c77d08fa7082607b06ba8ae5ea7dac6b976d92414fe852afa5b69e73a53496a1",
+  "recorded_at": "2026-11-06T09:07:42.900138+00:00",
+  "request": "groq|openai/gpt-oss-20b|{\"messages\":[{\"content\":\"Is web-1 leaning on its page file?\",\"role\":\"user\"}],\"model\":\"openai/gpt-oss-20b\",\"seed\":0,\"temperature\":0.0,\"tool_choice\":\"required\",\"tools\":[{\"function\":{\"description\":\"Reserve uninterrupted time on your own schedule.\",\"name\":\"block_focus_time\",\"parameters\":{\"properties\":{\"duration_minutes\":{\"type\":\"integer\"},\"mute_notifications\":{\"default\":true,\"type\":\"boolean\"},\"start\":{\"type\":\"string\"}},\"required\":[\"start\",\"duration_minutes\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Add an entry to the shared calendar.\",\"name\":\"create_event\",\"parameters\":{\"properties\":{\"attendees\":{\"default\":[],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"start\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"}},\"required\":[\"title\",\"start\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Deliver a short text message to a person's phone.\",\"name\":\"send_sms\",\"parameters\":{\"properties\":{\"recipient\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"required\":[\"recipient\",\"text\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Convert a clock time between time zones.\",\"name\":\"convert_timezone\",\"parameters\":{\"properties\":{\"amount\":{\"type\":\"string\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"}},\"required\":[\"amount\",\"source\",\"target\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Deliver a written message to a person.\",\"name\":\"send_email\",\"parameters\":{\"properties\":{\"recipient\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"required\":[\"recipient\",\"text\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Look up a book in the library catalog.\",\"name\":\"lookup_book\",\"parameters\":{\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Post a message to a team chat space.\",\"name\":\"post_message\",\"parameters\":{\"properties\":{\"recipient\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"required\":[\"recipient\",\"text\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Report processor load for a server.\",\"name\":\"cpu_stats\",\"parameters\":{\"properties\":{\"host\":{\"type\":\"string\"},\"window_minutes\":{\"default\":5,\"type\":\"integer\"}},\"required\":[\"host\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Copy a local file to cloud object storage.\",\"name\":\"upload_file\",\"parameters\":{\"properties\":{\"bucket\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"bucket\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Report RAM consumption for a server.\",\"name\":\"memory_stats\",\"parameters\":{\"properties\":{\"host\":{\"type\":\"string\"},\"include_swap\":{\"default\":false,\"type\":\"boolean\"}},\"required\":[\"host\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Attach a file to a support ticket.\",\"name\":\"attach_file\",\"parameters\":{\"properties\":{\"path\":{\"type\":\"string\"},\"ticket_id\":{\"type\":\"string\"}},\"required\":[\"path\",\"ticket_id\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Create a shareable download link for a file.\",\"name\":\"share_file\",\"parameters\":{\"properties\":{\"expires_hours\":{\"default\":24,\"type\":\"integer\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Convert an amount between currencies.\",\"name\":\"convert_currency\",\"parameters\":{\"properties\":{\"amount\":{\"type\":\"number\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"}},\"required\":[\"amount\",\"source\",\"target\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Schedule a personal notification.\",\"name\":\"set_reminder\",\"parameters\":{\"properties\":{\"at\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"required\":[\"text\",\"at\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Report storage use for a server.\",\"name\":\"disk_stats\",\"parameters\":{\"properties\":{\"host\":{\"type\":\"string\"},\"mount\":{\"default\":\"/\",\"type\":\"string\"}},\"required\":[\"host\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Convert a measurement between units.\",\"name\":\"convert_units\",\"parameters\":{\"properties\":{\"amount\":{\"type\":\"number\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"}},\"required\":[\"amount\",\"source\",\"target\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Look up a published research paper.\",\"name\":\"lookup_paper\",\"parameters\":{\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Look up an item in the store inventory.\",\"name\":\"lookup_product\",\"parameters\":{\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"],\"type\":\"object\"}},\"type\":\"function\"}]}",
+  "response": {
+    "id": "chatcmpl-0af853ef-b7bb-47e0-aef0-65fb10169cf4",
+    "choices": [
+      {
+        "finish_reason": "tool_calls",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": null,
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "fc_62846b68-0f0f-4c8c-86c5-5813ee956437",
+              "function": {
+                "arguments": "{\"host\":\"web-1\"}",
+                "name": "memory_stats"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning": "The user asks: \"Is web-1 leaning on its page file?\" This seems like a question about a website or a system. \"web-1\" might refer to a website or a server. \"leaning on its page file\" might refer to memory usage, swapping, or disk usage. They might be asking if web-1 is using its page file heavily, i.e., swapping. We need to check memory stats or disk stats. We can use memory_stats or disk_stats. The question: \"Is web-1 leaning on its page file?\" Likely they want to know if the server is swapping. So we should check memory usage and page file usage. We can use memory_stats for host \"web-1\". Let's call memory_stats."
+        }
+      }
+    ],
+    "created": 1793956063,
+    "model": "openai/gpt-oss-20b",
+    "object": "chat.completion",
+    "metadata": null,
+    "moderation": null,
+    "service_tier": "on_demand",
+    "system_fingerprint": "fp_bb6a356524",
+    "usage": {
+      "completion_tokens": 180,
+      "prompt_tokens": 640,
+      "total_tokens": 820,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 155,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": null,
+      "queue_time": 0.364935011,
+      "prompt_time": 0.045612739,
+      "completion_time": 0.248199208,
+      "total_time": 0.293811947
+    },
+    "usage_breakdown": null,
+    "x_groq": {
+      "id": "req_01m6r1t974e13t5b7v1c1gapv7",
+      "seed": 0
+    }
+  }
+}

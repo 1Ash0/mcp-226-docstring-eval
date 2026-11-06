@@ -1,0 +1,63 @@
+{
+  "key": "c6f5cc27f9316986005eeb353fec51dc1cda960186b40257ae10b9015e4fe748",
+  "recorded_at": "2026-11-06T08:58:07.792705+00:00",
+  "request": "groq|openai/gpt-oss-20b|{\"messages\":[{\"content\":\"Write to dana@example.com that the build is green.\",\"role\":\"user\"}],\"model\":\"openai/gpt-oss-20b\",\"seed\":0,\"temperature\":0.0,\"tool_choice\":\"required\",\"tools\":[{\"function\":{\"description\":\"Attach a file to a support ticket.\\n\\n:param path: Local path of the file.\\n:type path: str\\n:param ticket_id: Ticket key such as SUP-1042.\\n:type ticket_id: str\\n:returns: Attachment id.\\n:rtype: str\\n\",\"name\":\"attach_file\",\"parameters\":{\"properties\":{\"path\":{\"type\":\"string\"},\"ticket_id\":{\"type\":\"string\"}},\"required\":[\"path\",\"ticket_id\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Report storage use for a server.\\n\\n:param host: Hostname of the server.\\n:type host: str\\n:param mount: Mount point or drive to inspect, such as /var or C:.\\n:type mount: str\\n:returns: Used and free bytes on the mount.\\n:rtype: dict\\n\",\"name\":\"disk_stats\",\"parameters\":{\"properties\":{\"host\":{\"type\":\"string\"},\"mount\":{\"default\":\"/\",\"type\":\"string\"}},\"required\":[\"host\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Convert a measurement between units.\\n\\n:param amount: Value to convert.\\n:type amount: float\\n:param source: Unit symbol of the source, such as km, lb or degF.\\n:type source: str\\n:param target: Unit symbol of the target.\\n:type target: str\\n:returns: Converted value.\\n:rtype: float\\n\",\"name\":\"convert_units\",\"parameters\":{\"properties\":{\"amount\":{\"type\":\"number\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"}},\"required\":[\"amount\",\"source\",\"target\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Convert a clock time between time zones.\\n\\n:param amount: Clock time to convert, such as 14:30.\\n:type amount: str\\n:param source: IANA zone name of the source, such as Europe/Paris.\\n:type source: str\\n:param target: IANA zone name of the target.\\n:type target: str\\n:returns: Converted clock time.\\n:rtype: str\\n\",\"name\":\"convert_timezone\",\"parameters\":{\"properties\":{\"amount\":{\"type\":\"string\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"}},\"required\":[\"amount\",\"source\",\"target\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Copy a local file to cloud object storage.\\n\\n:param path: Local path of the file.\\n:type path: str\\n:param bucket: Name of the S3 bucket to copy into.\\n:type bucket: str\\n:returns: Object URL.\\n:rtype: str\\n\",\"name\":\"upload_file\",\"parameters\":{\"properties\":{\"bucket\":{\"type\":\"string\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\",\"bucket\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Look up a book in the library catalog.\\n\\n:param code: ISBN-13 of the book, thirteen digits such as 9780306406157.\\n:type code: str\\n:returns: The catalog record.\\n:rtype: dict\\n\",\"name\":\"lookup_book\",\"parameters\":{\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Convert an amount between currencies.\\n\\n:param amount: Amount to convert.\\n:type amount: float\\n:param source: ISO 4217 code of the source, such as EUR.\\n:type source: str\\n:param target: ISO 4217 code of the target, such as JPY.\\n:type target: str\\n:returns: Converted amount.\\n:rtype: float\\n\",\"name\":\"convert_currency\",\"parameters\":{\"properties\":{\"amount\":{\"type\":\"number\"},\"source\":{\"type\":\"string\"},\"target\":{\"type\":\"string\"}},\"required\":[\"amount\",\"source\",\"target\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Reserve uninterrupted time on your own schedule.\\n\\n:param start: ISO-8601 start time.\\n:type start: str\\n:param duration_minutes: Length of the block in minutes.\\n:type duration_minutes: int\\n:param mute_notifications: Silence all notifications during the block.\\n:type mute_notifications: bool\\n:returns: Block id.\\n:rtype: str\\n\",\"name\":\"block_focus_time\",\"parameters\":{\"properties\":{\"duration_minutes\":{\"type\":\"integer\"},\"mute_notifications\":{\"default\":true,\"type\":\"boolean\"},\"start\":{\"type\":\"string\"}},\"required\":[\"start\",\"duration_minutes\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Report processor load for a server.\\n\\n:param host: Hostname of the server.\\n:type host: str\\n:param window_minutes: Averaging window in minutes: 1, 5 or 15.\\n:type window_minutes: int\\n:returns: Load average over the window.\\n:rtype: float\\n\",\"name\":\"cpu_stats\",\"parameters\":{\"properties\":{\"host\":{\"type\":\"string\"},\"window_minutes\":{\"default\":5,\"type\":\"integer\"}},\"required\":[\"host\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Deliver a written message to a person.\\n\\n:param recipient: Email address such as name@example.com.\\n:type recipient: str\\n:param text: Message body.\\n:type text: str\\n:returns: Delivery id.\\n:rtype: str\\n\",\"name\":\"send_email\",\"parameters\":{\"properties\":{\"recipient\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"required\":[\"recipient\",\"text\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Create a shareable download link for a file.\\n\\n:param path: Local path of the file.\\n:type path: str\\n:param expires_hours: Hours until the link stops working.\\n:type expires_hours: int\\n:returns: The link.\\n:rtype: str\\n\",\"name\":\"share_file\",\"parameters\":{\"properties\":{\"expires_hours\":{\"default\":24,\"type\":\"integer\"},\"path\":{\"type\":\"string\"}},\"required\":[\"path\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Schedule a personal notification.\\n\\n:param text: What to remind about.\\n:type text: str\\n:param at: ISO-8601 time at which the notification fires.\\n:type at: str\\n:returns: Reminder id.\\n:rtype: str\\n\",\"name\":\"set_reminder\",\"parameters\":{\"properties\":{\"at\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"required\":[\"text\",\"at\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Add an entry to the shared calendar.\\n\\n:param title: Event title shown to attendees.\\n:type title: str\\n:param start: ISO-8601 start time.\\n:type start: str\\n:param attendees: Email addresses to invite.\\n:type attendees: list[str]\\n:returns: Event id.\\n:rtype: str\\n\",\"name\":\"create_event\",\"parameters\":{\"properties\":{\"attendees\":{\"default\":[],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"start\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"}},\"required\":[\"title\",\"start\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Deliver a short text message to a person's phone.\\n\\n:param recipient: Phone number in E.164 form such as +14155550123.\\n:type recipient: str\\n:param text: Message body, at most 160 characters.\\n:type text: str\\n:returns: Delivery id.\\n:rtype: str\\n\",\"name\":\"send_sms\",\"parameters\":{\"properties\":{\"recipient\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"required\":[\"recipient\",\"text\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Look up an item in the store inventory.\\n\\n:param code: Store SKU in the form AB-1234.\\n:type code: str\\n:returns: The inventory record.\\n:rtype: dict\\n\",\"name\":\"lookup_product\",\"parameters\":{\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Post a message to a team chat space.\\n\\n:param recipient: Channel name beginning with '#', such as #ops.\\n:type recipient: str\\n:param text: Message body.\\n:type text: str\\n:returns: Message permalink.\\n:rtype: str\\n\",\"name\":\"post_message\",\"parameters\":{\"properties\":{\"recipient\":{\"type\":\"string\"},\"text\":{\"type\":\"string\"}},\"required\":[\"recipient\",\"text\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Look up a published research paper.\\n\\n:param code: DOI of the paper, starting with '10.', such as 10.1038/nphys1170.\\n:type code: str\\n:returns: The paper's metadata.\\n:rtype: dict\\n\",\"name\":\"lookup_paper\",\"parameters\":{\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"],\"type\":\"object\"}},\"type\":\"function\"},{\"function\":{\"description\":\"Report RAM consumption for a server.\\n\\n:param host: Hostname of the server.\\n:type host: str\\n:param include_swap: Also report swap / page-file usage.\\n:type include_swap: bool\\n:returns: Used and free memory in MiB.\\n:rtype: dict\\n\",\"name\":\"memory_stats\",\"parameters\":{\"properties\":{\"host\":{\"type\":\"string\"},\"include_swap\":{\"default\":false,\"type\":\"boolean\"}},\"required\":[\"host\"],\"type\":\"object\"}},\"type\":\"function\"}]}",
+  "response": {
+    "id": "chatcmpl-8c439dbf-5b53-4b93-825e-f603f6c6651d",
+    "choices": [
+      {
+        "finish_reason": "tool_calls",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": null,
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "fc_f398f275-fdc0-4b77-b0d2-5c60a15a90f9",
+              "function": {
+                "arguments": "{\"recipient\":\"dana@example.com\",\"text\":\"The build is green.\"}",
+                "name": "send_email"
+              },
+              "type": "function"
+            }
+          ],
+          "reasoning": "We need to send an email. Use send_email function."
+        }
+      }
+    ],
+    "created": 1793955487,
+    "model": "openai/gpt-oss-20b",
+    "object": "chat.completion",
+    "metadata": null,
+    "moderation": null,
+    "service_tier": "on_demand",
+    "system_fingerprint": "fp_ce54c53bd5",
+    "usage": {
+      "completion_tokens": 47,
+      "prompt_tokens": 1667,
+      "total_tokens": 1714,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 13,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": null,
+      "queue_time": 0.366106598,
+      "prompt_time": 0.10415921,
+      "completion_time": 0.053609105,
+      "total_time": 0.157768315
+    },
+    "usage_breakdown": null,
+    "x_groq": {
+      "id": "req_01m6r18qq4e0eryk3hrbqnmtc0",
+      "seed": 0
+    }
+  }
+}

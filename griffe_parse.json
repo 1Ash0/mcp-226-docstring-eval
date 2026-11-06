@@ -1,0 +1,65 @@
+[
+  {
+    "format": "google",
+    "griffe_mode": "explicit",
+    "parser": "google",
+    "tools_fully_parsed": 18,
+    "tools": 18,
+    "params_exact": 38,
+    "params": 38
+  },
+  {
+    "format": "google",
+    "griffe_mode": "auto",
+    "parser": "google",
+    "tools_fully_parsed": 18,
+    "tools": 18,
+    "params_exact": 38,
+    "params": 38
+  },
+  {
+    "format": "numpy",
+    "griffe_mode": "explicit",
+    "parser": "numpy",
+    "tools_fully_parsed": 18,
+    "tools": 18,
+    "params_exact": 38,
+    "params": 38
+  },
+  {
+    "format": "numpy",
+    "griffe_mode": "auto",
+    "parser": "numpy",
+    "tools_fully_parsed": 18,
+    "tools": 18,
+    "params_exact": 38,
+    "params": 38
+  },
+  {
+    "format": "rest",
+    "griffe_mode": "explicit",
+    "parser": "sphinx",
+    "tools_fully_parsed": 18,
+    "tools": 18,
+    "params_exact": 38,
+    "params": 38
+  },
+  {
+    "format": "rest",
+    "griffe_mode": "auto",
+    "parser": "sphinx",
+    "tools_fully_parsed": 18,
+    "tools": 18,
+    "params_exact": 38,
+    "params": 38
+  },
+  {
+    "format": "plain",
+    "griffe_mode": "auto",
+    "parser": null,
+    "tools_fully_parsed": 0,
+    "tools": 18,
+    "params_exact": 0,
+    "params": 38
+  }
+]
